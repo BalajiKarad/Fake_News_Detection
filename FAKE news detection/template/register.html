@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+  {% block body %}
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+             {% for message in messages %}
+             <div class="alert alert-danger" role="alert">
+                 <center> {{ message }}</center>
+              </div>
+              {% endfor %}
+        {% endif %}
+    {% endwith %}
+<form class="form-horizontal" action='/register' method="POST" style="text-align: justify;" onsubmit="return validation()">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register</legend>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">Username</label>
+      <div class="controls">
+        <input type="text" id="user" name="name" placeholder='Please Enter the Name' autocomplete="off" class="input-xlarge">
+        <span id="username" class="text-danger font-weight-bold"> </span>
+      </div>
+
+    </div>
+ 
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="email"  class="input-xlarge" lass="form-control"  placeholder="Enter your email" name="email" id="emails" autocomplete="off">
+       <span id="emailids" class="text-danger font-weight-bold"> </span>
+      <h5 id="error">
+           <p class="text-danger">{{error}}</p>
+      </h5>
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <input type="password" class="input-xlarge" class="form-control" name="password" id="pass" autocomplete="off" placeholder="Enter the password">
+          <span id="passwords" class="text-danger font-weight-bold"> </span>
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Password -->
+      <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+      <div class="controls">
+        <input type="password" class="input-xlarge" name="password2" id="conpass" autocomplete="off" placeholder="Enter the confirm password">
+         <span id="confrmpass" class="text-danger font-weight-bold"> </span>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" onclick="myFunction()">Register</button>
+      </div>
+      <a href="/login" style=" margin-left: 180px;">Login</a>
+    </div>
+  </fieldset>
+</form>
+<script>
+var count = 0; //global variable
+function myFunction() {
+  if (count++ == 1) { //Compare and then increment counter
+    alert("Your Registeration successfully. Thank you!"); //this alert message will be shown only on second click of a button
+  }
+}
+
+</script>
+
+<script type="text/javascript">
+    
+
+    function validation(){
+
+      var user = document.getElementById('user').value;
+      var pass = document.getElementById('pass').value;
+      var confirmpass = document.getElementById('conpass').value;
+      var emails = document.getElementById('emails').value;
+
+
+
+      if(user == ""){
+        document.getElementById('username').innerHTML =" ** Please fill the username field";
+        return false;
+      }
+      if((user.length <= 2) || (user.length > 20)) {
+        document.getElementById('username').innerHTML =" ** Username lenght must be between 2 and 20";
+        return false; 
+      }
+      if(!isNaN(user)){
+        document.getElementById('username').innerHTML =" ** only characters are allowed";
+        return false;
+      }
+
+
+
+
+
+
+
+      if(pass == ""){
+        document.getElementById('passwords').innerHTML =" ** Please fill the password field";
+        return false;
+      }
+      if((pass.length <= 5) || (pass.length > 20)) {
+        document.getElementById('passwords').innerHTML =" ** Passwords lenght must be between  5 and 20";
+        return false; 
+      }
+
+
+      if(pass!=confirmpass){
+        document.getElementById('confrmpass').innerHTML =" ** Password does not match the confirm password";
+        return false;
+      }
+
+
+
+      if(confirmpass == ""){
+        document.getElementById('confrmpass').innerHTML =" ** Please fill the confirmpassword field";
+        return false;
+      }
+
+
+
+
+
+      if(emails == ""){
+        document.getElementById('emailids').innerHTML =" ** Please fill the email idx` field";
+        return false;
+      }
+      if(emails.indexOf('@') <= 0 ){
+        document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
+        return false;
+      }
+
+      if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+        document.getElementById('emailids').innerHTML =" ** . Invalid Position";
+        return false;
+      }
+    }
+
+  </script>
+  {% endblock %}

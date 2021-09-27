@@ -1,0 +1,146 @@
+
+{% extends "layout.html" %}
+  {% block body %}
+    <div class="site-section bg-light" id="contact-section">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+        <div class="col-7 text-center mb-5">
+          <h2>Contact Us Or Use This Form To Fake News Detections</h2>
+        
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-8 mb-5" >
+            <form action="/contact" method="post" onsubmit="return validation()">
+              <div class="form-group row">
+                <div class="col-md-6 mb-4 mb-lg-0">
+                  <input type="text" name="name" class="form-control" id="name" class="form-control" placeholder="Enter your Name">
+                <span id="username" class="text-danger font-weight-bold"> </span>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Email email" name="email" id="email" >
+                  <span id="emailids" class="text-danger font-weight-bold"> </span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="contact" id="contact" placeholder="Enter your contact" >
+                   <span id="mobileno" class="text-danger font-weight-bold"> </span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input name="message" type="text" id="message" class="form-control" placeholder="Message"></textarea>
+                   <span id="message" class="text-danger font-weight-bold"> </span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 mr-auto">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message" onclick="myFunction()">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4 ml-auto">
+            <div class="bg-white p-3 p-md-5">
+              <h3 class="text-black mb-4">Contact Info</h3>
+              <ul class="list-unstyled footer-link">
+                <li class="d-block mb-3">
+                  <span class="d-block text-black">Address:</span>
+                  <span>Pune Maharastra</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Phone:</span><span>+1 242 4942 290</span></li>
+                <li class="d-block mb-3"><span class="d-block text-black">Email:</span><span>info@fakenews-.com</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+var count = 0; //global variable
+function myFunction() {
+  if (count++ == 1) { //Compare and then increment counter
+    alert("Your contact successfully. Thank you!"); //this alert message will be shown only on second click of a button
+  }
+}
+
+</script>
+
+</script>
+
+    <script type="text/javascript">
+    
+
+    function validation(){
+
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var contact = document.getElementById('contact').value;
+      var message = document.getElementById('message').value;
+
+
+
+      if(name == ""){
+        document.getElementById('username').innerHTML =" ** Please fill the username field";
+        return false;
+      }
+      if((name.length <= 2) || (user.length > 20)) {
+        document.getElementById('username').innerHTML =" ** Username lenght must be between 4 and 20";
+        return false; 
+      }
+      if(!isNaN(name)){
+        document.getElementById('username').innerHTML =" ** only characters are allowed";
+        return false;
+      }
+
+
+      if(email == ""){
+        document.getElementById('emailids').innerHTML =" ** Please fill the email idx` field";
+        return false;
+      }
+      if(emails.indexOf('@') <= 0 ){
+        document.getElementById('emailids').innerHTML =" ** @ Invalid Position";
+        return false;
+      }
+
+      if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+        document.getElementById('emailids').innerHTML =" ** . Invalid Position";
+        return false;
+      }
+
+
+      if(contact == ""){
+        document.getElementById('mobileno').innerHTML =" ** Please fill the mobile NUmber field";
+        return false;
+      }
+      if(isNaN(contact)){
+        document.getElementById('mobileno').innerHTML =" ** user must write digits only not characters";
+        return false;
+      }
+      if(contact.length!=10){
+        document.getElementById('mobileno').innerHTML =" ** Mobile Number must be 10 digits only";
+        return false;
+      }
+
+      if(message == ""){
+        document.getElementById('message').innerHTML =" ** Please fill the message field";
+        return false;
+      }
+      if((message.length <= 2) || (message.length > 20)) {
+        document.getElementById('message').innerHTML =" ** Message lenght must be between 2 and 20";
+        return false; 
+      }
+      if(!isNaN(message)){
+        document.getElementById('message').innerHTML =" ** only characters are allowed";
+        return false;
+      }
+
+
+    }
+
+  </script>
+
+{% endblock %}
+
+    
